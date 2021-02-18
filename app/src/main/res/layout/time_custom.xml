@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+              android:layout_height="match_parent" android:orientation="vertical">
+    <TextView
+            android:text="@string/set_a_time"
+            android:gravity="center"
+            android:textSize="50sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_weight="1"/>
+    <TextView
+            android:text="@string/minutes"
+            android:textSize="35sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_weight="1"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_minutes"
+            android:inputType="number"
+            android:gravity="center"
+            android:ems="10"
+            android:id="@+id/inputMinutes"
+            android:layout_weight="1"
+            tools:ignore="LabelFor"/>
+    <TextView
+            android:text="@string/seconds"
+            android:textSize="35sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:layout_weight="1"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/enter_seconds"
+            android:gravity="center"
+            android:ems="10"
+            android:id="@+id/inputSeconds"
+            android:layout_weight="1"
+            tools:ignore="LabelFor"/>
+    <Button
+            android:text="@string/start_game"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/startGame"
+            android:layout_weight="1"/>
+</LinearLayout>
