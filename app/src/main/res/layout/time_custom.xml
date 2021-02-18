@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_minutes"
+            android:maxLength="3"
             android:inputType="number"
             android:gravity="center"
             android:ems="10"
@@ -42,6 +43,7 @@
             android:inputType="number"
             android:hint="@string/enter_seconds"
             android:gravity="center"
+            android:maxLength="2"
             android:ems="10"
             android:id="@+id/inputSeconds"
             android:layout_weight="1"
@@ -51,5 +53,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/startGame"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:backgroundTint="#4CAF50"/>
 </LinearLayout>
