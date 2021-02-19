@@ -4,8 +4,11 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_timer.*
+
 
 
 class TimerActivity : AppCompatActivity() {
@@ -16,6 +19,7 @@ class TimerActivity : AppCompatActivity() {
     private var timerBIsRunning = false
     var startTimeA : Long = 0
     var startTimeB : Long = 0
+    var gamePaused = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +29,9 @@ class TimerActivity : AppCompatActivity() {
         // Get starting time info from MainActivity/CustomTime
         startTimeA = intent.getLongExtra("startTime", 0)
         startTimeB = intent.getLongExtra("startTime", 0)
+
+        if (startTimeA == 0L) startTimeA = intent.getLongExtra("startTimeA", 0)
+        if (startTimeB == 0L) startTimeB = intent.getLongExtra("startTimeB", 0)
 
         timerUI(startTimeA, buttonA)
         timerUI(startTimeB, buttonB)
@@ -83,7 +90,6 @@ class TimerActivity : AppCompatActivity() {
         }
     }
 
-
     private fun pauseTimerA() {
         if (timerAIsRunning) timerA.cancel()
     }
@@ -101,8 +107,47 @@ class TimerActivity : AppCompatActivity() {
         } else {
             button.text = "$minute:$seconds"
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return when (item.itemId) {
+            R.id.pause -> {
+                if (gamePaused) {
+                    if (timerAIsRunning) {  // So we know whose turn it was before the game was paused
+                        buttonA.isEnabled = true
+                        buttonB.performClick()
+                        gamePaused = false
+                    } else if (timerBIsRunning) {
+                        buttonB.isEnabled = true
+                        buttonA.performClick()
+                        gamePaused = false
+                    } else {              // Need this for when paused is clicked before the game starts
+                        buttonA.isEnabled = true
+                        buttonB.isEnabled = true
+                        gamePaused = false
+                    }
+                } else {
+                    pauseTimerA()
+                    pauseTimerB()
+                    buttonA.isEnabled = false
+                    buttonB.isEnabled = false
+                    gamePaused = true
 
 
+
+
+                }
+                true
+
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }

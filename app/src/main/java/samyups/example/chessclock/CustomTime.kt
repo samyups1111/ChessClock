@@ -8,9 +8,12 @@ import java.lang.NumberFormatException
 
 class CustomTime : AppCompatActivity() {
 
-    private var minutes = 0L
-    private var seconds = 0L
-    private var startTime = 0L
+    private var minutesA = 0L
+    private var secondsA = 0L
+    private var minutesB = 0L
+    private var secondsB = 0L
+    private var startTimeA = 0L
+    private var startTimeB = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,24 +21,17 @@ class CustomTime : AppCompatActivity() {
 
         startGame.setOnClickListener {
 
-            //I used try/catch so an empty user input doesn't crash the app
+            minutesA = 60000L * (inputMinutesA.text.toString().toLongOrNull() ?: 0L)
+            secondsA = 1000L * (inputSecondsA.text.toString().toLongOrNull() ?: 0L)
 
-            try {
-                minutes = (60000 * inputMinutes.text.toString().toInt()).toLong() // 60000 millisec = 1 min
+            minutesB = 60000L * (inputMinutesB.text.toString().toLongOrNull() ?: 0L)
+            secondsB = 1000L * (inputSecondsB.text.toString().toLongOrNull() ?: 0L)
 
-            } catch (exception : NumberFormatException) {
-                minutes = 0L
-
-            }
-            try {
-                seconds = (1000 * inputSeconds.text.toString().toInt()).toLong()
-            } catch (exception : NumberFormatException) {
-                seconds = 0L
-            }
-
-            startTime = minutes + seconds
+            startTimeA = minutesA + secondsA
+            startTimeB = minutesB + secondsB
             val customIntent = Intent(this, TimerActivity::class.java)
-            customIntent.putExtra("startTime", startTime)
+            customIntent.putExtra("startTimeA", startTimeA)
+            customIntent.putExtra("startTimeB", startTimeB)
             startActivity(customIntent)
 
         }

@@ -9,12 +9,18 @@
     <string name="_5">5</string>
     <string name="_6">6</string>
     <string name="set_a_time">Set a Time:</string>
-    <string name="minutes">Minutes</string>
+    <string name="minutes_A">Minutes A</string>
     <string name="enter_minutes_here">ENTER MINUTES HERE</string>
-    <string name="seconds">Seconds</string>
+    <string name="seconds_A">Seconds A</string>
     <string name="enter_seconds_here">ENTER SECONDS HERE</string>
     <string name="start_game">Start Game</string>
     <string name="enter_minutes">Enter Minutes</string>
     <string name="enter_seconds">Enter Seconds</string>
+    <string name="pause">pause</string>
+    <string name="settings">settings</string>
+    <string name="pauseGame"/>
+    <string name="play">play</string>
+    <string name="minutes_B">Minutes B</string>
+    <string name="Seconsd_B">Seconds B</string>
 
 </resources>
