@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
               android:layout_height="match_parent" android:orientation="vertical">
     <TextView
             android:text="@string/set_a_time"
@@ -9,15 +9,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
-            android:layout_weight="1"/>
+    />
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_weight="1">
+            android:layout_height="45dp">
         <TextView
                 android:text="@string/minutes_A"
-                android:textSize="35sp"
+                android:textSize="15sp"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView3"
@@ -28,19 +29,22 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_minutes"
                 android:maxLength="3"
+                android:textSize="15sp"
                 android:inputType="number"
                 android:gravity="center"
+                android:layout_marginEnd="70dp"
                 android:ems="10"
-                android:layout_weight="1"
-                tools:ignore="LabelFor"/>
+                tools:ignore="LabelFor"
+                android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_weight="1">
+            android:layout_height="45dp">
         <TextView
                 android:text="@string/seconds_A"
-                android:textSize="35sp"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,6 +57,8 @@
                 android:inputType="number"
                 android:hint="@string/enter_seconds"
                 android:gravity="center"
+                android:textSize="15sp"
+                android:layout_marginEnd="70dp"
                 android:maxLength="2"
                 android:ems="10"
                 android:layout_weight="1"
@@ -61,10 +67,11 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_weight="1">
+            android:layout_height="45dp">
         <TextView
                 android:text="@string/minutes_B"
-                android:textSize="35sp"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,6 +82,8 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_minutes"
                 android:maxLength="3"
+                android:textSize="15sp"
+                android:layout_marginEnd="70dp"
                 android:inputType="number"
                 android:gravity="center"
                 android:ems="10"
@@ -86,11 +95,12 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="45dp"
+    >
         <TextView
                 android:text="@string/Seconsd_B"
-                android:textSize="35sp"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,18 +111,39 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="@string/enter_seconds"
+                android:textSize="15sp"
                 android:gravity="center"
                 android:maxLength="2"
+                android:layout_marginEnd="70dp"
                 android:ems="10"
                 android:id="@+id/inputSecondsB"
                 android:layout_weight="1"
                 tools:ignore="LabelFor"/>
     </LinearLayout>
-    <Button
-            android:text="@string/start_game"
-            android:layout_width="match_parent"
+
+    <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/startGame"
-            android:layout_weight="1"
-            android:backgroundTint="#4CAF50"/>
+    >
+
+        <Button
+                android:text="@string/start_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="140dp"
+                android:id="@+id/startGame"
+                android:backgroundTint="#4CAF50"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="73dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_add2"
+                android:id="@+id/fabSave"
+                android:focusable="true"/>
+    </RelativeLayout>
 </LinearLayout>

@@ -2,7 +2,7 @@ package samyups.example.chessclock
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.time_custom.*
 import java.lang.NumberFormatException
 
