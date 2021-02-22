@@ -2,9 +2,10 @@ package samyups.example.chessclock
 
 import android.content.Intent
 import android.os.Bundle
+
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.time_custom.*
-import java.lang.NumberFormatException
 
 class CustomTime : AppCompatActivity() {
 
@@ -14,6 +15,7 @@ class CustomTime : AppCompatActivity() {
     private var secondsB = 0L
     private var startTimeA = 0L
     private var startTimeB = 0L
+    private lateinit var noteViewModel : MySavedTimesViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,12 @@ class CustomTime : AppCompatActivity() {
             startActivity(customIntent)
 
         }
+
+        fabSave.setOnClickListener {
+
+        }
+
+        noteViewModel = ViewModelProvider(this) [MySavedTimesViewModel::class.java]
 
 
     }

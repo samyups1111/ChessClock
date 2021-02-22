@@ -123,7 +123,7 @@
 
     <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
     >
 
         <Button
@@ -139,11 +139,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:clickable="true"
                 app:srcCompat="@drawable/ic_add2"
                 android:id="@+id/fabSave"
-                android:focusable="true"/>
+                android:focusable="true"
+                app:backgroundTint="#530D98"/>
     </RelativeLayout>
 </LinearLayout>
