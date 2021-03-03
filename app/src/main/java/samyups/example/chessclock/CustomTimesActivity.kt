@@ -1,5 +1,6 @@
 package samyups.example.chessclock
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_custom_times.*
 import kotlinx.android.synthetic.main.activity_timer.*
+import kotlinx.android.synthetic.main.recyclerview_item.*
 import samyups.example.chessclock.R.menu.my_saved_times_menu
 
 
@@ -42,6 +44,8 @@ class CustomTimesActivity : AppCompatActivity() {
 
         initRecyclerView()
         addDataSet()
+
+
     }
 
     private fun initRecyclerView(){
