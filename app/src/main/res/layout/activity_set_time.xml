@@ -3,7 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
               android:layout_height="match_parent" android:orientation="vertical">
     <TextView
-            android:text="@string/set_a_time"
+            android:text="@string/set_time"
             android:gravity="center"
             android:textSize="50sp"
             android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="140dp"
-                android:id="@+id/startGame"
+                android:id="@+id/startGameButton"
                 android:backgroundTint="#4CAF50"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

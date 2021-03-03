@@ -4,47 +4,50 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
-    var startTime = 0L
+    private var startTime = 0L
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        oneMinButton.setOnClickListener {
 
-
-        oneMin.setOnClickListener {
             startTime = 1L * 60000L // 60,000 millisec = 1 min
             val oneMinIntent = Intent(this, TimerActivity::class.java)
             oneMinIntent.putExtra("startTime", startTime) // sending start time info to TimerActivity
             startActivity(oneMinIntent)
         }
 
-        fiveMin.setOnClickListener {
+        fiveMinButton.setOnClickListener {
+
             startTime = 5 * 60000
             val fiveMinIntent = Intent(this, TimerActivity::class.java)
             fiveMinIntent.putExtra("startTime", startTime)
             startActivity(fiveMinIntent)
         }
 
-        thirtyMin.setOnClickListener {
+        thirtyMinButton.setOnClickListener {
+
             startTime = 30 * 60000
             val thirtyMinIntent = Intent(this, TimerActivity::class.java)
             thirtyMinIntent.putExtra("startTime", startTime)
             startActivity(thirtyMinIntent)
         }
 
-        customTime.setOnClickListener {
-            val customTimeIntent = Intent(this, CustomTime::class.java)
-            startActivity(customTimeIntent)
+        newTimeButton.setOnClickListener {
+
+            val newTimeIntent = Intent(this, SetTimeActivity::class.java)
+            startActivity(newTimeIntent)
         }
 
+        customTimesButton.setOnClickListener {
 
-
-
+            val customTimesIntent = Intent(this, CustomTimesActivity::class.java)
+            startActivity(customTimesIntent)
+        }
     }
 }

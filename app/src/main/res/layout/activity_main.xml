@@ -20,56 +20,69 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/oneMin"/>
+            app:layout_constraintBottom_toTopOf="@+id/layout1"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/layout3"
+            app:layout_constraintTop_toBottomOf="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+                android:text="@string/new_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="150dp"
+                android:id="@+id/newTimeButton"
+                android:backgroundTint="@android:color/holo_green_light"
+        />
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/layout1"
+            app:layout_constraintTop_toBottomOf="@id/Welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+                android:text="@string/_1_minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:id="@+id/oneMinButton"
+                android:backgroundTint="@android:color/holo_green_light"
+        />
+        <Button
+                android:text="@string/_5_minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:id="@+id/fiveMinButton"
+                android:backgroundTint="@android:color/holo_green_light"
+        />
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:id="@+id/layout2"
+            app:layout_constraintTop_toBottomOf="@id/layout1"
+            android:layout_height="wrap_content">
+        <Button
+                android:text="@string/_30_minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
 
-    <Button
-            android:text="@string/_1_minute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/oneMin"
-            android:backgroundTint="@android:color/holo_green_light"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Welcome"
-            app:layout_constraintBottom_toTopOf="@+id/fiveMin"/>
-    <Button
-            android:text="@string/_5_minutes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/fiveMin"
-            android:backgroundTint="@android:color/holo_green_light"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/oneMin"
-            app:layout_constraintBottom_toTopOf="@+id/thirtyMin"/>
-
-
-    <Button
-            android:text="@string/_30_minutes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/thirtyMin"
-            android:backgroundTint="@android:color/holo_green_light"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fiveMin"
-            app:layout_constraintBottom_toTopOf="@+id/customTime"/>
-
-
-    <Button
-            android:text="@string/custom_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/customTime"
-            android:backgroundTint="@android:color/holo_green_light"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/thirtyMin"/>
+                android:id="@+id/thirtyMinButton"
+                android:backgroundTint="@android:color/holo_green_light"
+        />
+        <Button
+                android:text="@string/custom_times"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/customTimesButton"
+        />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

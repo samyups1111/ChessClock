@@ -22,5 +22,9 @@
     <string name="play">play</string>
     <string name="minutes_B">Minutes B</string>
     <string name="Seconsd_B">Seconds B</string>
+    <string name="delete">delete</string>
+    <string name="custom_times">Custom Times</string>
+    <string name="new_time">New Time</string>
+    <string name="set_time">SET TIME:</string>
 
 </resources>

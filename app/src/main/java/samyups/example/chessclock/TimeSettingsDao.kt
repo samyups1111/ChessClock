@@ -7,13 +7,13 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface MySavedTimesDao {
+interface TimeSettingsDao {
 
     @Query("SELECT * FROM `time settings` ORDER BY id ASC")
-    fun getIncrementId(): Flow<List<MySavedTimes>>
+    fun getIncrementId(): Flow<List<TimeSettings>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(name : MySavedTimes)
+    suspend fun insert(timeSettings : TimeSettings)
 
     @Query("DELETE FROM `time settings`")
     suspend fun deleteALL()

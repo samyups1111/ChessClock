@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_timer.*
 
 
-
 class TimerActivity : AppCompatActivity() {
 
     private lateinit var timerA : CountDownTimer
@@ -26,7 +25,7 @@ class TimerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
 
-        // Get starting time info from MainActivity/CustomTime
+        // Get starting time info from MainActivity/setTime
         startTimeA = intent.getLongExtra("startTime", 0)
         startTimeB = intent.getLongExtra("startTime", 0)
 
@@ -38,6 +37,7 @@ class TimerActivity : AppCompatActivity() {
 
 
         buttonB.setOnClickListener {
+
             // clicking buttonB starts timerA
             timerA = object : CountDownTimer(startTimeA, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
@@ -65,6 +65,7 @@ class TimerActivity : AppCompatActivity() {
         }
 
         buttonA.setOnClickListener {
+
             timerB = object : CountDownTimer(startTimeB, 1000) {
                 override fun onTick(millisUntilFinished: Long) {
                     timerUI(millisUntilFinished, buttonB)
@@ -138,16 +139,10 @@ class TimerActivity : AppCompatActivity() {
                     buttonA.isEnabled = false
                     buttonB.isEnabled = false
                     gamePaused = true
-
-
-
-
                 }
                 true
-
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 }

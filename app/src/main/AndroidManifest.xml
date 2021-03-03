@@ -3,12 +3,15 @@
           package="samyups.example.chessclock">
 
     <application
+            android:name=".TimeSettingsApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="ChessClock"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".CustomTimesActivity">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -19,8 +22,7 @@
         <activity
                 android:name=".TimerActivity"
                 android:screenOrientation="portrait"/>
-        <activity android:name=".CustomTime"/>
-
+        <activity android:name=".SetTimeActivity"/>
     </application>
 
 </manifest>
