@@ -2,6 +2,7 @@ package samyups.example.chessclock
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_set_time.*
 
@@ -54,6 +55,9 @@ class SetTimeActivity : AppCompatActivity() {
             saveIntent.putExtra("startTimeA", startTimeA)
             saveIntent.putExtra("startTimeB", startTimeB)
             startActivity(saveIntent)
+
+            if (startTimeA != 0L && startTimeB != 0L)
+                Toast.makeText(this, "TIME SAVED", Toast.LENGTH_SHORT).show()
         }
     }
 }

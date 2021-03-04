@@ -1,10 +1,12 @@
 package samyups.example.chessclock
 
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,9 +34,9 @@ class CustomTimesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_custom_times)
 
 
-        timeSettingsViewModel.allTimes.observe(this, Observer { mySavedTimes ->
+        timeSettingsViewModel.allTimes.observe(this, Observer { timeSettings ->
             // Update the cached copy of the words in the adapter.
-            mySavedTimes?.let { myAdapter.submitList(it) }
+            timeSettings?.let { myAdapter.submitList(it) }
         })
 
         val recyclerView = findViewById<RecyclerView>(R.id.myRecyclerView)
@@ -44,6 +46,7 @@ class CustomTimesActivity : AppCompatActivity() {
 
         initRecyclerView()
         addDataSet()
+
 
 
     }
@@ -68,6 +71,8 @@ class CustomTimesActivity : AppCompatActivity() {
 
         if (startTimeA != 0L && startTimeB != 0L) timeSettingsViewModel.insert(newSavedTime)
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
