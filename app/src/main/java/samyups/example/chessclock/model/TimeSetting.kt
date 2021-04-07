@@ -1,11 +1,11 @@
-package samyups.example.chessclock
+package samyups.example.chessclock.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "Time Settings")
 
-data class TimeSettings(
+data class TimeSetting(
 
     @PrimaryKey(autoGenerate = true) val id: Int,
     val timerA: String,

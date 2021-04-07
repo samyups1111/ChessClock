@@ -26,5 +26,14 @@
     <string name="custom_times">Custom Times</string>
     <string name="new_time">New Time</string>
     <string name="set_time">SET TIME:</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_time_b">Enter Time B</string>
+    <string name="enter_time_a">Enter Time A</string>
+    <string name="add_new_time_setting">Add New Time Setting</string>
+    <string name="timer_a_minutes">Timer A Minutes</string>
+    <string name="timer_a_seconds">Timer A Seconds</string>
+    <string name="enter_timer_b_minutes">Enter Timer B Minutes</string>
+    <string name="enter_timer_b_seconds">Enter Timer B Seconds</string>
 
 </resources>
