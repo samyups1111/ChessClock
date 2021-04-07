@@ -1,4 +1,4 @@
-package samyups.example.chessclock
+package samyups.example.chessclock.ui
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,10 +7,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_timer.*
+import kotlinx.android.synthetic.main.activity_start_game.*
+import samyups.example.chessclock.R
 
-
-class TimerActivity : AppCompatActivity() {
+class StartGameActivity : AppCompatActivity() {
 
     private lateinit var timerA : CountDownTimer
     private lateinit var timerB : CountDownTimer
@@ -23,7 +23,7 @@ class TimerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_timer)
+        setContentView(R.layout.activity_start_game)
 
         // Get starting time info from MainActivity/setTime
         startTimeA = intent.getLongExtra("startTime", 0)
