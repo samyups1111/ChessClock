@@ -8,4 +8,6 @@
     <color name="orange">#FFA500</color>
     <color name="blue">#00FFFF</color>
     <color name="navyblue">#000080</color>
+    <color name="black">#000000</color>
+    <color name="limegreen">#32CD32</color>
 </resources>

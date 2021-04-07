@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_time_settings.*
-import kotlinx.android.synthetic.main.activity_timer.*
 import kotlinx.android.synthetic.main.recyclerview_item.*
 import samyups.example.chessclock.*
 import samyups.example.chessclock.R.menu.my_saved_times_menu
@@ -20,8 +19,6 @@ import samyups.example.chessclock.utils.MainViewModelFactory
 
 class TimeSettingsActivity : AppCompatActivity() {
 
-    private var startTimeA : Long = 0
-    private var startTimeB : Long = 0
     private val mainAdapter = MainRecyclerViewAdapter()
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModelFactory((application as MainApplication).repository)
