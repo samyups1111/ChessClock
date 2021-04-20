@@ -28,10 +28,6 @@ class MainRecyclerViewAdapter : RecyclerView.Adapter<MainRecyclerViewHolder>() {
         this.timeSettingList = list
         notifyDataSetChanged()
     }
-
-    fun moveItem(from: Int, to: Int) {
-
-    }
 }
 
 
