@@ -78,12 +78,14 @@ class SaveTimeDialog(private val mainViewModel: MainViewModel): DialogFragment()
     }
 
     private fun saveTimeSetting() {
+        val hoursA: Long = binding?.viewModel?.hoursA()?: 0L
         val minutesA: Long = binding?.viewModel?.minutesA()?: 0L
         val secondsA: Long = binding?.viewModel?.secondsA()?: 0L
-        val timerALong = timeToMilliSec(minutesA, secondsA).toString()
+        val timerALong = timeToMilliSec(hoursA, minutesA, secondsA).toString()
+        val hoursB : Long = binding?.viewModel?.hoursB()?: 0L
         val minutesB: Long = binding?.viewModel?.minutesB()?: 0L
         val secondsB: Long = binding?.viewModel?.secondsB()?: 0L
-        val timerBLong = timeToMilliSec(minutesB, secondsB).toString()
+        val timerBLong = timeToMilliSec(hoursA, minutesB, secondsB).toString()
 
         val newTime = TimeSetting(0, timerALong, timerBLong)
         Log.d(TAG, "minutesA = $minutesA, secondsA = $secondsA, minutesB = $minutesB, secondsB = $secondsB")

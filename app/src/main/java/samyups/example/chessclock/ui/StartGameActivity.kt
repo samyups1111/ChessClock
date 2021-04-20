@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_start_game.*
 import samyups.example.chessclock.R
+import samyups.example.chessclock.utils.milliToMinSec
 
 class StartGameActivity : AppCompatActivity() {
 
@@ -103,14 +104,7 @@ class StartGameActivity : AppCompatActivity() {
     }
 
     fun timerUI(startTime : Long, button : Button) {
-        val minute : Long = (startTime / 1000) / 60
-        val seconds  = ((startTime / 1000) % 60).toInt()
-
-        if (seconds < 10) {
-            button.text = "$minute:0$seconds" // ex: 0:08 instead of 0:8 for 8 seconds
-        } else {
-            button.text = "$minute:$seconds"
-        }
+        button.text = milliToMinSec(startTime)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
