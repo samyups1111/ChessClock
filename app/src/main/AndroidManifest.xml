@@ -20,7 +20,6 @@
         <activity
                 android:name=".ui.StartGameActivity"
                 android:screenOrientation="portrait"/>
-        <activity android:name=".ui.SetTimeActivity"/>
     </application>
 
 </manifest>

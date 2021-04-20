@@ -23,7 +23,7 @@ class TimeSettingsActivity : AppCompatActivity() {
     private val mainViewModel: MainViewModel by viewModels {
         MainViewModelFactory((application as MainApplication).repository)
     }
-    private lateinit var mainDialogBox : MainDialogBox
+    private lateinit var saveTimeDialog: SaveTimeDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class TimeSettingsActivity : AppCompatActivity() {
 
     private fun initUI() {
         add_time_setting_fab.setOnClickListener {
-            showDialog(mainViewModel)
+            showSaveTimeDialog(mainViewModel)
         }
     }
 
@@ -53,19 +53,17 @@ class TimeSettingsActivity : AppCompatActivity() {
         initItemTouchHelper(main_recyclerview)
     }
 
-    private fun showDialog(mainViewModel: MainViewModel) {
-        mainDialogBox = MainDialogBox(mainViewModel)
-        mainDialogBox.show(supportFragmentManager, "customDialog")
+    private fun showSaveTimeDialog(mainViewModel: MainViewModel) {
+        saveTimeDialog = SaveTimeDialog(mainViewModel)
+        saveTimeDialog.show(supportFragmentManager, "setTimeDialog")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
         menuInflater.inflate(my_saved_times_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         return when (item.itemId) {
             R.id.deleteAll -> {
                 mainViewModel.deleteAll()

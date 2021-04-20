@@ -13,8 +13,8 @@ class MainRecyclerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) 
     private val timeSettingTitle: TextView = itemView.findViewById(R.id.time_setting_title)
 
     fun bind(timeSetting: TimeSetting) {
-        val timerA = milliToMinSec(timeSetting.timerA.toLong())
-        val timerB = milliToMinSec(timeSetting.timerB.toLong())
+        val timerA = milliToMinSec(timeSetting.timerA.toLongOrNull()?: 0L)
+        val timerB = milliToMinSec(timeSetting.timerB.toLongOrNull()?: 0L)
         timeSettingTitle.text = "Timer A: $timerA\nTimer B: $timerB"
 
         timeSettingTitle.setOnClickListener {
