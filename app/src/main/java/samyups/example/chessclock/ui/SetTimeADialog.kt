@@ -13,6 +13,7 @@ class SetTimeADialog(private val mainViewModel: MainViewModel): DialogFragment()
 
     private var minutes = 0L
     private var seconds = 0L
+    private var hours = 0L
     private val TAG = "SetTimeADialog"
     private var binding: SetTimeADialogBinding? = null
 
@@ -62,9 +63,10 @@ class SetTimeADialog(private val mainViewModel: MainViewModel): DialogFragment()
         binding?.selectSeconds?.displayedValues = secondsList
 
         binding?.submitButton?.setOnClickListener {
+            hours = hoursList[binding?.selectHour?.value!! -1].toLong()
             minutes = minutesList[binding?.selectMinutes?.value!! - 1].toLong()
             seconds = secondsList[binding?.selectSeconds?.value!! - 1].toLong()
-            binding?.viewModel?.setTimeA(minutes, seconds)
+            binding?.viewModel?.setTimeA(hours, minutes, seconds)
             Log.d(TAG, "minutes = $minutes \n seconds = $seconds")
             Log.d(TAG, "viewModel.displaytime = ${binding?.viewModel?.displayTimeA}")
             dismiss()

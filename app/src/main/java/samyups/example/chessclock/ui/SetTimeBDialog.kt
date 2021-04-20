@@ -11,6 +11,7 @@ import samyups.example.chessclock.databinding.SetTimeBDialogBinding
 
 class SetTimeBDialog(private val mainViewModel: MainViewModel): DialogFragment() {
 
+    private var hours = 0L
     private var minutes = 0L
     private var seconds = 0L
     private val TAG = "SetTimeBDialog"
@@ -62,9 +63,10 @@ class SetTimeBDialog(private val mainViewModel: MainViewModel): DialogFragment()
         binding?.selectSeconds?.displayedValues = secondsList
 
         binding?.submitButton?.setOnClickListener {
+            hours = hoursList[binding?.selectHour?.value!! - 1].toLong()
             minutes = minutesList[binding?.selectMinutes?.value!! - 1].toLong()
             seconds = secondsList[binding?.selectSeconds?.value!! - 1].toLong()
-            binding?.viewModel?.setTimeB(minutes, seconds)
+            binding?.viewModel?.setTimeB(hours, minutes, seconds)
             Log.d(TAG, "minutes = $minutes \n seconds = $seconds")
             Log.d(TAG, "viewModel.displaytime = ${binding?.viewModel?.displayTimeB}")
             dismiss()

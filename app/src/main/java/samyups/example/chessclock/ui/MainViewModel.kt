@@ -12,6 +12,11 @@ class MainViewModel(private val repository: MainRepository): ViewModel() {
 
     private val TAG = "MainViewModel"
 
+    private var _hoursA : Long = 0
+    fun hoursA() = _hoursA
+    private var _hoursB : Long = 0
+    fun hoursB() = _hoursB
+
     private var _minutesA: Long = 0
     fun minutesA() = _minutesA
     private var _minutesB: Long = 0
@@ -29,27 +34,29 @@ class MainViewModel(private val repository: MainRepository): ViewModel() {
 
     val timeSettingsListLiveData: LiveData<List<TimeSetting>> = repository.timeSettingsListFlow.asLiveData()
 
-    fun setTimeA(mins: Long, secs : Long) {
+    fun setTimeA(hours: Long, mins: Long, secs : Long) {
         Log.d(TAG, "setTime activated")
+        _hoursA = hours
         _minutesA = mins
         _secondsA = secs
-        val timeInMilli = timeToMilliSec(mins, secs)
+        val timeInMilli = timeToMilliSec(hours, mins, secs)
         Log.d(TAG, "MVM: timInMilli = $timeInMilli")
         _displayTimeA.value = milliToMinSec(timeInMilli)
     }
 
-    fun setTimeB(mins: Long, secs : Long) {
+    fun setTimeB(hours: Long, mins: Long, secs : Long) {
         Log.d(TAG, "setTime activated")
+        _hoursB = hours
         _minutesB = mins
         _secondsB = secs
-        val timeInMilli = timeToMilliSec(mins, secs)
+        val timeInMilli = timeToMilliSec(hours, mins, secs)
         Log.d(TAG, "MVM: timInMilli = $timeInMilli")
         _displayTimeB.value = milliToMinSec(timeInMilli)
     }
 
     fun resetTimes() {
-        setTimeA(0, 0)
-        setTimeB(0, 0)
+        setTimeA(0, 0, 0)
+        setTimeB(0, 0, 0)
     }
 
     fun insert(timeSetting: TimeSetting) = viewModelScope.launch {
