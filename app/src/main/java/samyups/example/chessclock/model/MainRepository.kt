@@ -2,6 +2,7 @@ package samyups.example.chessclock.model
 
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 
 //Declares the DAO as a private property in the constructor. Pass in the DAO
 //instead of the whole database, because you only need access to the DAO.
@@ -11,6 +12,10 @@ class MainRepository(private val mainDao: MainDao) {
     //Room executes all queries on a separate thread.
     //  Observed Flow will notify the observer when the data has changed.
     val timeSettingsListFlow: Flow<List<TimeSetting>> = mainDao.getTimeSettings()
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun getTimeSetting(id: Int) : Flow<TimeSetting> = mainDao.getTimeSetting(id)
 
     // By default Room runs suspend queries off the main thread, therefore, we don't need to
     // implement anything else to ensure we're not doing long running database work

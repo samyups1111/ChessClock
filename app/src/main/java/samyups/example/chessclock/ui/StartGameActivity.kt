@@ -3,15 +3,17 @@ package samyups.example.chessclock.ui
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_start_game.*
 import samyups.example.chessclock.R
 import samyups.example.chessclock.utils.milliToMinSec
 
 class StartGameActivity : AppCompatActivity() {
+
+    private val TAG = "startGameActivity"
 
     private lateinit var timerA : CountDownTimer
     private lateinit var timerB : CountDownTimer
@@ -20,8 +22,18 @@ class StartGameActivity : AppCompatActivity() {
     var startTimeA : Long = 0
     var startTimeB : Long = 0
     var gamePaused = false
+    private var secondsDelayedA = 5000L
+    private var secondsDelayedB = 5000L
+    private var hasTimeDelayA = false
+    private var hasTimeDelayB = false
+    private lateinit var delayTimerA : CountDownTimer
+    private lateinit var delayTimerB : CountDownTimer
+    private var incrementA = false
+    private var incrementB = false
+    var id = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "OnCreate activiated")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_game)
         startGame()
@@ -29,62 +41,69 @@ class StartGameActivity : AppCompatActivity() {
 
     private fun startGame() {
         getTimeSetting()
+        applyTimeSetting()
         initButtonA()
         initButtonB()
+        initTimeDelayA(secondsDelayedA)
+        initTimeDelayB(secondsDelayedB)
     }
 
     private fun getTimeSetting() {
-        startTimeA = intent.getLongExtra("startTime", 0)
-        startTimeB = intent.getLongExtra("startTime", 0)
+        Log.d(TAG, "getTimeSetting Activiated")
+        id = intent.getIntExtra("id", 0)
+        startTimeA = intent.getLongExtra("timerA",0)
+        startTimeB = intent.getLongExtra("timerB", 0)
+        hasTimeDelayA = intent.getBooleanExtra("delayA", false)
+        hasTimeDelayB = intent.getBooleanExtra("delayB", false)
+        incrementA = intent.getBooleanExtra("incrementA", false)
+        incrementB = intent.getBooleanExtra("incrementB", false)
+        Log.d(TAG, "startTimeB = $startTimeB, startTimeA (2)= $startTimeA, id = $id")
+        Log.d(TAG, "incrementA = $incrementA, incrementB = $incrementB")
+    }
 
-        if (startTimeA == 0L) startTimeA = intent.getLongExtra("startTimeA", 0)
-        if (startTimeB == 0L) startTimeB = intent.getLongExtra("startTimeB", 0)
-
-        timerUI(startTimeA, button_a)
-        timerUI(startTimeB, button_b)
+    private fun applyTimeSetting() {
+        Log.d(TAG, "applyTimeSetting activated, startTimeA = $startTimeA")
+        button_a.text = milliToMinSec(startTimeA)
+        button_b.text = milliToMinSec(startTimeB)
     }
 
     private fun initButtonA() {
         button_a.setOnClickListener {
-            timerB = object : CountDownTimer(startTimeB, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    timerUI(millisUntilFinished, button_b)
-                    startTimeB = millisUntilFinished
-                }
-                override fun onFinish() {
-                    button_b.text = "OUT OF TIME!!!"
-                    button_b.isEnabled = false // otherwise timerA can still run out after winning
-                    button_a.text = "WINNER!"
-                    button_a.setBackgroundColor(Color.parseColor("#66ff00"))
-                    button_b.setBackgroundColor(Color.parseColor("#FF0000"))
-                }
-            }.start()
+
+            Log.d(TAG, "ButtonA clicked: startTimeA = $startTimeA")
+            if (incrementB) startTimeB += 5000
+            initTimerB()
+            applyTimeSetting()
+            if (hasTimeDelayB) {
+                initTimeDelayB(secondsDelayedB)
+                delayTimerB.start()
+            } else {
+                timerB.start()
+            }
             button_a.setBackgroundColor(Color.parseColor("#d3d3d3"))
             button_b.setBackgroundColor(Color.parseColor("#66ff00"))
             button_b.isEnabled = true
             button_a.isEnabled = false
             timerBIsRunning = true
             pauseTimerA()
+
             timerAIsRunning = false
         }
     }
 
     private fun initButtonB() {
         button_b.setOnClickListener {
+
+            if (incrementA) startTimeA += 5000
             // clicking buttonB starts timerA
-            timerA = object : CountDownTimer(startTimeA, 1000) {
-                override fun onTick(millisUntilFinished: Long) {
-                    timerUI(millisUntilFinished, button_a)
-                    startTimeA = millisUntilFinished
-                }
-                override fun onFinish() {
-                    button_a.text = "OUT OF TIME!!!"
-                    button_a.isEnabled = false // otherwise timerB can still run out after winning
-                    button_b.text = "WINNER!"
-                    button_b.setBackgroundColor(Color.parseColor("#66ff00"))
-                    button_a.setBackgroundColor(Color.parseColor("#FF0000"))
-                }
-            }.start()
+            initTimerA()
+            applyTimeSetting()
+            if (hasTimeDelayA) {
+                initTimeDelayA(secondsDelayedA)
+                delayTimerA.start()
+            } else {
+                timerA.start()
+            }
             button_a.setBackgroundColor(Color.parseColor("#66ff00"))
             button_b.setBackgroundColor(Color.parseColor("#d3d3d3"))
             button_a.isEnabled = true
@@ -95,16 +114,70 @@ class StartGameActivity : AppCompatActivity() {
         }
     }
 
+    private fun initTimerA() {
+        timerA = object : CountDownTimer(startTimeA, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                button_a.text = milliToMinSec(millisUntilFinished)
+                Log.d(TAG, "startTimeA (1) = $startTimeA")
+                startTimeA = millisUntilFinished
+                Log.d(TAG, "startTimeA (2) = $startTimeA")
+            }
+            override fun onFinish() {
+                button_a.text = "OUT OF TIME!!!"
+                button_a.isEnabled = false // otherwise timerB can still run out after winning
+                button_b.text = "WINNER!"
+                button_b.setBackgroundColor(Color.parseColor("#66ff00"))
+                button_a.setBackgroundColor(Color.parseColor("#FF0000"))
+            }
+        }
+    }
+
+    private fun initTimerB() {
+        timerB = object : CountDownTimer(startTimeB, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                button_b.text = milliToMinSec(millisUntilFinished)
+                startTimeB = millisUntilFinished
+            }
+            override fun onFinish() {
+                button_b.text = "OUT OF TIME!!!"
+                button_b.isEnabled = false // otherwise timerA can still run out after winning
+                button_a.text = "WINNER!"
+                button_a.setBackgroundColor(Color.parseColor("#66ff00"))
+                button_b.setBackgroundColor(Color.parseColor("#FF0000"))
+            }
+        }
+    }
+
+    private fun initTimeDelayA(secondsDelayedA: Long) {
+        delayTimerA = object: CountDownTimer(secondsDelayedA, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                delay_a.text = milliToMinSec(millisUntilFinished)
+            }
+            override fun onFinish() {
+                timerA.start()
+            }
+        }
+    }
+
+    private fun initTimeDelayB(secondsDelayedB: Long) {
+        delayTimerB = object: CountDownTimer(secondsDelayedB, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                delay_b.text = milliToMinSec(millisUntilFinished)
+            }
+            override fun onFinish() {
+                timerB.start()
+            }
+        }
+    }
+
     private fun pauseTimerA() {
         if (timerAIsRunning) timerA.cancel()
+        if (hasTimeDelayA) delayTimerA.cancel()
     }
 
     private fun pauseTimerB() {
         if (timerBIsRunning) timerB.cancel()
-    }
-
-    fun timerUI(startTime : Long, button : Button) {
-        button.text = milliToMinSec(startTime)
+        if (hasTimeDelayB) delayTimerB.cancel()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -41,6 +41,25 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <RadioButton
+                android:id="@+id/delay_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delay?"/>
+            <RadioButton
+                android:id="@+id/increment_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Increment?"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,6 +72,22 @@
                 android:layout_marginLeft="10dp"
                 android:text="@{viewModel.displayTimeB}"/>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/delay_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delay?"/>
+            <RadioButton
+                android:id="@+id/increment_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Increment?"/>
         </LinearLayout>
 
         <LinearLayout
