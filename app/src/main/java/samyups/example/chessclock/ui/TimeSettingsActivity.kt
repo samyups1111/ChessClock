@@ -58,21 +58,6 @@ class TimeSettingsActivity : AppCompatActivity() {
         saveTimeDialog.show(supportFragmentManager, "setTimeDialog")
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(my_saved_times_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.settings -> {
-
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     private fun initItemTouchHelper(mainRecyclerView: RecyclerView) {
         val itemTouchHelperCallback = object: ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or

@@ -35,7 +35,7 @@
                 android:rotation="-90"
                 android:textColor="@color/white"
                 android:elevation="@dimen/cardview_default_elevation"
-                android:text="5"/>
+                android:text=""/>
         </FrameLayout>
 
 
@@ -70,7 +70,7 @@
                 android:layout_marginRight="50dp"
                 android:elevation="@dimen/big_padding"
                 android:textColor="@color/white"
-                android:text="5"/>
+                android:text=""/>
 
         </FrameLayout>
 

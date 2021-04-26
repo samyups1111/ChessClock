@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-            android:id="@+id/pause"
-            android:icon="@drawable/ic_pause"
-            app:showAsAction="ifRoom"
-            android:orderInCategory="1"
 
-            android:title="@string/pauseGame"/>
+
     <item
-        android:id="@+id/settings"
-        android:title="@string/settings"
-        android:icon="@drawable/ic_baseline_settings_24"
+        android:id="@+id/b_minus1"
+        android:icon="@drawable/ic_minus1"
         app:showAsAction="always"
-        android:orderInCategory="2"/>
+        android:visible="false"
+        android:orderInCategory="1"
+        android:title="B"/>
 
+    <item
+        android:id="@+id/b_plus1"
+        android:icon="@drawable/ic_plus1"
+        app:showAsAction="always"
+        android:visible="false"
+        android:orderInCategory="2"
+        android:title="B"/>
 
+    <item
+        android:id="@+id/pause"
+        android:icon="@drawable/ic_pause"
+        app:showAsAction="always"
+        android:orderInCategory="3"
+        android:title="@string/pauseGame"/>
 
+    <item
+        android:id="@+id/a_minus1"
+        android:icon="@drawable/ic_minus1"
+        app:showAsAction="always"
+        android:visible="false"
+        android:orderInCategory="4"
+        android:title="A"/>
+
+    <item
+        android:id="@+id/a_plus1"
+        android:icon="@drawable/ic_plus1"
+        app:showAsAction="always"
+        android:visible="false"
+        android:orderInCategory="5"
+        android:title="A"/>
 
 </menu>
