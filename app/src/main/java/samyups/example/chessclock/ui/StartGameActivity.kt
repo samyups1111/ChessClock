@@ -22,8 +22,8 @@ class StartGameActivity : AppCompatActivity() {
     var startTimeA : Long = 0
     var startTimeB : Long = 0
     var gamePaused = false
-    private var secondsDelayedA = 5000L
-    private var secondsDelayedB = 5000L
+    private var secondsDelayedA = 6000L
+    private var secondsDelayedB = 6000L
     private var hasTimeDelayA = false
     private var hasTimeDelayB = false
     private lateinit var delayTimerA : CountDownTimer
@@ -31,6 +31,10 @@ class StartGameActivity : AppCompatActivity() {
     private var incrementA = false
     private var incrementB = false
     var id = 0
+    private lateinit var aMinus1 : MenuItem
+    private lateinit var aPlus1 : MenuItem
+    private lateinit var bMinus1 : MenuItem
+    private lateinit var bPlus1 : MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "OnCreate activiated")
@@ -101,6 +105,7 @@ class StartGameActivity : AppCompatActivity() {
             if (hasTimeDelayA) {
                 initTimeDelayA(secondsDelayedA)
                 delayTimerA.start()
+
             } else {
                 timerA.start()
             }
@@ -155,6 +160,7 @@ class StartGameActivity : AppCompatActivity() {
             }
             override fun onFinish() {
                 timerA.start()
+                applyTimeSetting()
             }
         }
     }
@@ -166,6 +172,7 @@ class StartGameActivity : AppCompatActivity() {
             }
             override fun onFinish() {
                 timerB.start()
+                applyTimeSetting()
             }
         }
     }
@@ -180,8 +187,12 @@ class StartGameActivity : AppCompatActivity() {
         if (hasTimeDelayB) delayTimerB.cancel()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
+        aMinus1 = menu.findItem(R.id.a_minus1)
+        aPlus1 = menu.findItem(R.id.a_plus1)
+        bMinus1 = menu.findItem(R.id.b_minus1)
+        bPlus1 = menu.findItem(R.id.b_plus1)
         return true
     }
 
@@ -189,6 +200,8 @@ class StartGameActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.pause -> {
                 if (gamePaused) {
+                    showMenuItem()
+
                     if (timerAIsRunning) {  // So we know whose turn it was before the game was paused
                         button_a.isEnabled = true
                         button_b.performClick()
@@ -202,16 +215,52 @@ class StartGameActivity : AppCompatActivity() {
                         button_b.isEnabled = true
                         gamePaused = false
                     }
+                    showMenuItem()
                 } else {
                     pauseTimerA()
                     pauseTimerB()
                     button_a.isEnabled = false
                     button_b.isEnabled = false
                     gamePaused = true
+                    showMenuItem()
                 }
                 true
             }
+            R.id.a_minus1 -> {
+                startTimeB -= 60_000
+                applyTimeSetting()
+                true
+            }
+            R.id.a_plus1 -> {
+                startTimeB += 60_000
+                applyTimeSetting()
+                true
+            }
+            R.id.b_minus1 -> {
+                startTimeA -= 60_000
+                applyTimeSetting()
+                true
+            }
+            R.id.b_plus1 -> {
+                startTimeA += 60_000
+                applyTimeSetting()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showMenuItem() {
+        if (gamePaused) {
+            aMinus1.isVisible = true
+            aPlus1.isVisible = true
+            bMinus1.isVisible = true
+            bPlus1.isVisible = true
+        } else {
+            aMinus1.isVisible = false
+            aPlus1.isVisible = false
+            bMinus1.isVisible = false
+            bPlus1.isVisible = false
         }
     }
 }
