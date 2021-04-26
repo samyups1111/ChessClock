@@ -2,11 +2,14 @@ package samyups.example.chessclock.ui
 
 import android.util.Log
 import androidx.lifecycle.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import samyups.example.chessclock.model.TimeSetting
 import samyups.example.chessclock.model.MainRepository
 import samyups.example.chessclock.utils.milliToMinSec
 import samyups.example.chessclock.utils.timeToMilliSec
+import java.sql.Time
 
 class MainViewModel(private val repository: MainRepository): ViewModel() {
 
@@ -35,7 +38,7 @@ class MainViewModel(private val repository: MainRepository): ViewModel() {
     val timeSettingsListLiveData: LiveData<List<TimeSetting>> = repository.timeSettingsListFlow.asLiveData()
 
     fun setTimeA(hours: Long, mins: Long, secs : Long) {
-        Log.d(TAG, "setTime activated")
+        Log.d(TAG, "setTimeA activated")
         _hoursA = hours
         _minutesA = mins
         _secondsA = secs
@@ -45,7 +48,7 @@ class MainViewModel(private val repository: MainRepository): ViewModel() {
     }
 
     fun setTimeB(hours: Long, mins: Long, secs : Long) {
-        Log.d(TAG, "setTime activated")
+        Log.d(TAG, "setTimeB activated")
         _hoursB = hours
         _minutesB = mins
         _secondsB = secs
@@ -63,11 +66,11 @@ class MainViewModel(private val repository: MainRepository): ViewModel() {
         repository.insert(timeSetting)
     }
 
-    fun deleteAll() = viewModelScope.launch {
-        repository.deleteAll()
-    }
-
     fun delete(timeSetting: TimeSetting) = viewModelScope.launch {
         repository.delete(timeSetting)
+    }
+
+    init {
+        resetTimes()
     }
 }

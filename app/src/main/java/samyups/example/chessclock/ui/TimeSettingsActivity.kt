@@ -65,8 +65,8 @@ class TimeSettingsActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.deleteAll -> {
-                mainViewModel.deleteAll()
+            R.id.settings -> {
+
                 true
             }
             else -> super.onOptionsItemSelected(item)
