@@ -42,4 +42,12 @@
         android:orderInCategory="5"
         android:title="A"/>
 
+    <item
+        android:id="@+id/reset"
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="ifRoom"
+        android:visible="true"
+        android:orderInCategory="6"
+        android:title="reset"/>
+
 </menu>
