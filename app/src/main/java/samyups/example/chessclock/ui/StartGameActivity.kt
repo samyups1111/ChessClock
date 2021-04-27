@@ -6,6 +6,7 @@ import android.os.CountDownTimer
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_start_game.*
 import samyups.example.chessclock.R
@@ -35,6 +36,8 @@ class StartGameActivity : AppCompatActivity() {
     private lateinit var aPlus1 : MenuItem
     private lateinit var bMinus1 : MenuItem
     private lateinit var bPlus1 : MenuItem
+    private lateinit var pause : MenuItem
+    private lateinit var reset: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "OnCreate activiated")
@@ -193,6 +196,23 @@ class StartGameActivity : AppCompatActivity() {
         aPlus1 = menu.findItem(R.id.a_plus1)
         bMinus1 = menu.findItem(R.id.b_minus1)
         bPlus1 = menu.findItem(R.id.b_plus1)
+        pause = menu.findItem(R.id.pause)
+        reset = menu.findItem(R.id.reset)
+
+        val resetButton = Button(this)
+        resetButton.text = "RESET"
+
+        resetButton.setOnLongClickListener {
+            pauseTimerA()
+            pauseTimerB()
+            getTimeSetting()
+            applyTimeSetting()
+            true
+        }
+
+        reset.actionView = resetButton
+
+        
         return true
     }
 
@@ -227,22 +247,29 @@ class StartGameActivity : AppCompatActivity() {
                 true
             }
             R.id.a_minus1 -> {
-                startTimeB -= 60_000
-                applyTimeSetting()
-                true
-            }
-            R.id.a_plus1 -> {
-                startTimeB += 60_000
-                applyTimeSetting()
-                true
-            }
-            R.id.b_minus1 -> {
                 startTimeA -= 60_000
                 applyTimeSetting()
                 true
             }
-            R.id.b_plus1 -> {
+            R.id.a_plus1 -> {
                 startTimeA += 60_000
+                applyTimeSetting()
+                true
+            }
+            R.id.b_minus1 -> {
+                startTimeB -= 60_000
+                applyTimeSetting()
+                true
+            }
+            R.id.b_plus1 -> {
+                startTimeB += 60_000
+                applyTimeSetting()
+                true
+            }
+            R.id.reset -> {
+                pauseTimerA()
+                pauseTimerB()
+                getTimeSetting()
                 applyTimeSetting()
                 true
             }
