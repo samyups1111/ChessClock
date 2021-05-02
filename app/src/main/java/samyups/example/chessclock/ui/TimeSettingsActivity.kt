@@ -1,8 +1,6 @@
 package samyups.example.chessclock.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -12,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_time_settings.*
 import kotlinx.android.synthetic.main.recyclerview_item.*
 import samyups.example.chessclock.*
-import samyups.example.chessclock.R.menu.my_saved_times_menu
 import samyups.example.chessclock.utils.MainApplication
 import samyups.example.chessclock.utils.MainRecyclerViewAdapter
 import samyups.example.chessclock.utils.MainViewModelFactory

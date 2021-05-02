@@ -16,8 +16,6 @@ class SaveTimeDialog(private val mainViewModel: MainViewModel): DialogFragment()
     private lateinit var setTimeBDialog: SetTimeBDialog
     private var binding : SaveTimeDialogBinding? = null
     private val TAG = "SaveTimeDialog"
-    private var timeDelayA = false
-    private var timeDelayB = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
