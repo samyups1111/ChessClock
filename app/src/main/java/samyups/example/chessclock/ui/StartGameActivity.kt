@@ -25,6 +25,8 @@ class StartGameActivity : AppCompatActivity() {
     var gamePaused = false
     private var secondsDelayedA = 6000L
     private var secondsDelayedB = 6000L
+    private var secondsIncrementA = 5000L
+    private var secondsIncrementB = 5000L
     private var hasTimeDelayA = false
     private var hasTimeDelayB = false
     private lateinit var delayTimerA : CountDownTimer
@@ -61,9 +63,13 @@ class StartGameActivity : AppCompatActivity() {
         startTimeA = intent.getLongExtra("timerA",0)
         startTimeB = intent.getLongExtra("timerB", 0)
         hasTimeDelayA = intent.getBooleanExtra("delayA", false)
+        secondsDelayedA = (intent.getStringExtra("secondsDelayA")?.toLongOrNull() ?: 5000L) + 1000
         hasTimeDelayB = intent.getBooleanExtra("delayB", false)
+        secondsDelayedB = (intent.getStringExtra("secondsDelayB")?.toLongOrNull() ?: 5000L) + 1000
         incrementA = intent.getBooleanExtra("incrementA", false)
+        secondsIncrementA = intent.getStringExtra("incrementSecondsA")?.toLongOrNull() ?: 5000L
         incrementB = intent.getBooleanExtra("incrementB", false)
+        secondsIncrementB = intent.getStringExtra("incrementSecondsB")?.toLongOrNull() ?: 5000L
         Log.d(TAG, "startTimeB = $startTimeB, startTimeA (2)= $startTimeA, id = $id")
         Log.d(TAG, "incrementA = $incrementA, incrementB = $incrementB")
     }
@@ -78,7 +84,8 @@ class StartGameActivity : AppCompatActivity() {
         button_a.setOnClickListener {
 
             Log.d(TAG, "ButtonA clicked: startTimeA = $startTimeA")
-            if (incrementB) startTimeB += 5000
+            Log.d(TAG, "secondsdelayB = ${secondsDelayedB}")
+            if (incrementB) startTimeB += secondsIncrementB
             initTimerB()
             applyTimeSetting()
             if (hasTimeDelayB) {
@@ -101,7 +108,7 @@ class StartGameActivity : AppCompatActivity() {
     private fun initButtonB() {
         button_b.setOnClickListener {
 
-            if (incrementA) startTimeA += 5000
+            if (incrementA) startTimeA += secondsIncrementA
             // clicking buttonB starts timerA
             initTimerA()
             applyTimeSetting()

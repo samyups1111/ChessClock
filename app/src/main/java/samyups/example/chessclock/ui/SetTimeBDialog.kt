@@ -1,6 +1,5 @@
 package samyups.example.chessclock.ui
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater

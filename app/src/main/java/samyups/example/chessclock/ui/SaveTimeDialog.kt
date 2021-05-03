@@ -5,6 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import samyups.example.chessclock.databinding.SaveTimeDialogBinding
 import samyups.example.chessclock.model.TimeSetting
@@ -42,6 +44,10 @@ class SaveTimeDialog(private val mainViewModel: MainViewModel): DialogFragment()
     private fun initUI() {
         initTimerAButton()
         initTimerBButton()
+        initSetDelayAEditText()
+        initSetDelayBEditText()
+        initSetIncrementAEditText()
+        initSetIncrementBEditText()
         initCancelButton()
         initSaveButton()
     }
@@ -67,8 +73,8 @@ class SaveTimeDialog(private val mainViewModel: MainViewModel): DialogFragment()
 
     private fun initSaveButton() {
         binding?.saveTimeSaveButton?.setOnClickListener {
-            initDelayButtonA()
-            initDelayButtonB()
+            //initDelayButtonA()
+            //initDelayButtonB()
             saveTimeSetting()
             dismiss()
         }
@@ -78,16 +84,98 @@ class SaveTimeDialog(private val mainViewModel: MainViewModel): DialogFragment()
         return binding?.delayA?.isChecked!!
     }
 
+    private fun initSetDelayAEditText() {
+
+        binding?.delayA?.setOnClickListener {
+            Log.d(TAG, "delayASetOnClickListener")
+            if (binding?.delayA?.isChecked == true) {
+                Log.d(TAG, "delayA is checked = ${binding?.delayA?.isChecked }")
+                binding?.setDelayAEdittext?.isVisible = true
+                Log.d(TAG,"setDelayEditTextVisibility = ${binding?.setDelayAEdittext?.isVisible}")
+                binding?.setDelayAEdittext?.isShown
+                Log.d(TAG, "delayAEdtiText is shown = ${binding?.setDelayAEdittext?.isShown}")
+            } else {
+                binding?.setDelayAEdittext?.isVisible = false
+            }
+        }
+    }
+
+    private fun initSetDelayBEditText() {
+
+        binding?.delayB?.setOnClickListener {
+            Log.d(TAG, "delayASetOnClickListener")
+            if (binding?.delayB?.isChecked == true) {
+                binding?.setDelayBEdittext?.isVisible = true
+                binding?.setDelayBEdittext?.isShown
+            } else {
+                binding?.setDelayBEdittext?.isVisible = false
+            }
+        }
+    }
+
+    private fun initSetIncrementAEditText() {
+
+        binding?.incrementA?.setOnClickListener {
+            if (binding?.incrementA?.isChecked == true) {
+                binding?.setIncrementAEdittext?.isVisible = true
+                binding?.setIncrementAEdittext?.isShown
+            } else {
+                binding?.setIncrementAEdittext?.isVisible = false
+            }
+        }
+    }
+
+    private fun initSetIncrementBEditText() {
+
+        binding?.incrementB?.setOnClickListener {
+            if (binding?.incrementB?.isChecked == true) {
+                binding?.setIncrementBEdittext?.isVisible = true
+                binding?.setIncrementBEdittext?.isShown
+            } else {
+                binding?.setIncrementBEdittext?.isVisible = false
+            }
+        }
+    }
+
+    private fun setDelayTimeA(): String {
+        return if (initDelayButtonA()) {
+            (binding?.setDelayAEdittext?.text.toString().toLong() * 1000).toString()
+        }
+        else "5000"
+
+    }
+
     private fun initDelayButtonB(): Boolean {
         return binding?.delayB?.isChecked!!
+    }
+
+    private fun setDelayTimeB(): String {
+        return if (initDelayButtonB()) {
+            (binding?.setDelayBEdittext?.text.toString().toLong() * 1000).toString()
+        }
+        else "5000"
     }
 
     private fun initIncrementButtonA(): Boolean {
         return binding?.incrementA?.isChecked!!
     }
 
+    private fun setIncrementTimeA(): String {
+        return if (initIncrementButtonA()) {
+            (binding?.setIncrementAEdittext?.text.toString().toLong() * 1000).toString()
+        }
+        else "5000"
+    }
+
     private fun initIncrementButtonB(): Boolean {
         return binding?.incrementB?.isChecked!!
+    }
+
+    private fun setIncrementTimeB(): String {
+        return if (initIncrementButtonB()) {
+            (binding?.setIncrementBEdittext?.text.toString().toLong() * 1000).toString()
+        }
+        else "5000"
     }
 
     private fun saveTimeSetting() {
@@ -106,11 +194,16 @@ class SaveTimeDialog(private val mainViewModel: MainViewModel): DialogFragment()
                 timerALong,
                 timerBLong,
                 initDelayButtonA(),
+                setDelayTimeA(),
                 initDelayButtonB(),
+                setDelayTimeB(),
                 initIncrementButtonA(),
-                initIncrementButtonB()
+                setIncrementTimeA(),
+                initIncrementButtonB(),
+                setIncrementTimeB()
         )
         binding?.viewModel?.insert(newTime)
+        Log.d(TAG, "saving... newTime.setDelayTimeA = ${setDelayTimeA()}")
     }
 
     private fun showSetTimeADialog() {

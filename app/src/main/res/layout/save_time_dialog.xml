@@ -41,16 +41,38 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/delay_a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delay?"/>
-            <RadioButton
+
+            <EditText
+                android:id="@+id/set_delay_a_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:maxLength="2"
+                android:text="5"
+                android:inputType="number"
+                android:visibility="invisible"/>
+
+            <CheckBox
                 android:id="@+id/increment_a"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Increment?"/>
+
+            <EditText
+                android:id="@+id/set_increment_a_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="5"
+                android:maxLength="2"
+                android:inputType="number"
+                android:visibility="invisible"/>
+
 
 
         </LinearLayout>
@@ -78,16 +100,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/delay_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delay?"/>
-            <RadioButton
+
+            <EditText
+                android:id="@+id/set_delay_b_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="5"
+                android:maxLength="2"
+                android:inputType="number"
+                android:visibility="invisible"/>
+
+            <CheckBox
                 android:id="@+id/increment_b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Increment?"/>
+
+            <EditText
+                android:id="@+id/set_increment_b_edittext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="5"
+                android:maxLength="2"
+                android:inputType="number"
+                android:visibility="invisible"/>
+
         </LinearLayout>
 
         <LinearLayout
