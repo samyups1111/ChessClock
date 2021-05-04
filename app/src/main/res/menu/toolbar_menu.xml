@@ -2,6 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/time_minutes"
+        android:icon="@drawable/ic_minutes_clock"
+        android:visible="false"
+        app:showAsAction="always"
+        android:title="time_type"
+        android:orderInCategory="8"/>
+
+    <item
+        android:id="@+id/time_hours"
+        android:icon="@drawable/ic_hour_clock"
+        android:visible="false"
+        app:showAsAction="always"
+        android:title="time_type"
+        android:orderInCategory="9"/>
+
+    <item
+        android:id="@+id/time_seconds"
+        android:icon="@drawable/ic_seconds_clock"
+        android:visible="false"
+        app:showAsAction="always"
+        android:title="time_type"
+        android:orderInCategory="7"/>
+
 
     <item
         android:id="@+id/b_minus1"
