@@ -224,6 +224,8 @@ class StartGameActivity : AppCompatActivity() {
         timeSeconds = menu.findItem(R.id.time_seconds)
 
         val resetButton = Button(this)
+        resetButton.setBackgroundColor(Color.BLACK)
+        resetButton.setTextColor(Color.WHITE)
         initResetButton(resetButton)
         initTimeType(menu, currentTimeType)
 
@@ -278,6 +280,7 @@ class StartGameActivity : AppCompatActivity() {
             }
             R.id.a_minus1 -> {
                 startTimeA -= timeToLoseGain
+                if (startTimeA < 0) startTimeA = 0
                 applyTimeSetting()
                 true
             }
@@ -288,6 +291,7 @@ class StartGameActivity : AppCompatActivity() {
             }
             R.id.b_minus1 -> {
                 startTimeB -= timeToLoseGain
+                if (startTimeB < 0) startTimeB = 0
                 applyTimeSetting()
                 true
             }
