@@ -3,6 +3,8 @@ package samyups.example.chessclock.ui
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -11,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_start_game.*
 import samyups.example.chessclock.R
 import samyups.example.chessclock.utils.milliToMinSec
+
+enum class Time{ HOURS, MINUTES, SECONDS }
 
 class StartGameActivity : AppCompatActivity() {
 
@@ -25,6 +29,8 @@ class StartGameActivity : AppCompatActivity() {
     var gamePaused = false
     private var secondsDelayedA = 6000L
     private var secondsDelayedB = 6000L
+    private var secondsIncrementA = 5000L
+    private var secondsIncrementB = 5000L
     private var hasTimeDelayA = false
     private var hasTimeDelayB = false
     private lateinit var delayTimerA : CountDownTimer
@@ -38,12 +44,21 @@ class StartGameActivity : AppCompatActivity() {
     private lateinit var bPlus1 : MenuItem
     private lateinit var pause : MenuItem
     private lateinit var reset: MenuItem
+    private lateinit var timeHours : MenuItem
+    private lateinit var timeMinutes : MenuItem
+    private lateinit var timeSeconds : MenuItem
+    var currentTimeType = Time.MINUTES
+    var timeToLoseGain = 60_000L
+    private lateinit var mMenu : Menu
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "OnCreate activiated")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_game)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         startGame()
+
     }
 
     private fun startGame() {
@@ -61,9 +76,13 @@ class StartGameActivity : AppCompatActivity() {
         startTimeA = intent.getLongExtra("timerA",0)
         startTimeB = intent.getLongExtra("timerB", 0)
         hasTimeDelayA = intent.getBooleanExtra("delayA", false)
+        secondsDelayedA = (intent.getStringExtra("secondsDelayA")?.toLongOrNull() ?: 5000L) + 1000
         hasTimeDelayB = intent.getBooleanExtra("delayB", false)
+        secondsDelayedB = (intent.getStringExtra("secondsDelayB")?.toLongOrNull() ?: 5000L) + 1000
         incrementA = intent.getBooleanExtra("incrementA", false)
+        secondsIncrementA = intent.getStringExtra("incrementSecondsA")?.toLongOrNull() ?: 5000L
         incrementB = intent.getBooleanExtra("incrementB", false)
+        secondsIncrementB = intent.getStringExtra("incrementSecondsB")?.toLongOrNull() ?: 5000L
         Log.d(TAG, "startTimeB = $startTimeB, startTimeA (2)= $startTimeA, id = $id")
         Log.d(TAG, "incrementA = $incrementA, incrementB = $incrementB")
     }
@@ -78,7 +97,8 @@ class StartGameActivity : AppCompatActivity() {
         button_a.setOnClickListener {
 
             Log.d(TAG, "ButtonA clicked: startTimeA = $startTimeA")
-            if (incrementB) startTimeB += 5000
+            Log.d(TAG, "secondsdelayB = ${secondsDelayedB}")
+            if (incrementB) startTimeB += secondsIncrementB
             initTimerB()
             applyTimeSetting()
             if (hasTimeDelayB) {
@@ -101,7 +121,7 @@ class StartGameActivity : AppCompatActivity() {
     private fun initButtonB() {
         button_b.setOnClickListener {
 
-            if (incrementA) startTimeA += 5000
+            if (incrementA) startTimeA += secondsIncrementA
             // clicking buttonB starts timerA
             initTimerA()
             applyTimeSetting()
@@ -192,16 +212,33 @@ class StartGameActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
+        mMenu = menu
         aMinus1 = menu.findItem(R.id.a_minus1)
         aPlus1 = menu.findItem(R.id.a_plus1)
         bMinus1 = menu.findItem(R.id.b_minus1)
         bPlus1 = menu.findItem(R.id.b_plus1)
         pause = menu.findItem(R.id.pause)
         reset = menu.findItem(R.id.reset)
+        timeHours = menu.findItem(R.id.time_hours)
+        timeMinutes = menu.findItem(R.id.time_minutes)
+        timeSeconds = menu.findItem(R.id.time_seconds)
 
         val resetButton = Button(this)
-        resetButton.text = "RESET"
+        resetButton.setBackgroundColor(Color.BLACK)
+        resetButton.setTextColor(Color.WHITE)
+        initResetButton(resetButton)
+        initTimeType(menu, currentTimeType)
 
+
+        reset.actionView = resetButton
+
+        return true
+    }
+
+
+
+    private fun initResetButton(resetButton: Button) {
+        resetButton.text = "RESET"
         resetButton.setOnLongClickListener {
             pauseTimerA()
             pauseTimerB()
@@ -209,11 +246,6 @@ class StartGameActivity : AppCompatActivity() {
             applyTimeSetting()
             true
         }
-
-        reset.actionView = resetButton
-
-        
-        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -247,22 +279,24 @@ class StartGameActivity : AppCompatActivity() {
                 true
             }
             R.id.a_minus1 -> {
-                startTimeA -= 60_000
+                startTimeA -= timeToLoseGain
+                if (startTimeA < 0) startTimeA = 0
                 applyTimeSetting()
                 true
             }
             R.id.a_plus1 -> {
-                startTimeA += 60_000
+                startTimeA += timeToLoseGain
                 applyTimeSetting()
                 true
             }
             R.id.b_minus1 -> {
-                startTimeB -= 60_000
+                startTimeB -= timeToLoseGain
+                if (startTimeB < 0) startTimeB = 0
                 applyTimeSetting()
                 true
             }
             R.id.b_plus1 -> {
-                startTimeB += 60_000
+                startTimeB += timeToLoseGain
                 applyTimeSetting()
                 true
             }
@@ -271,6 +305,22 @@ class StartGameActivity : AppCompatActivity() {
                 pauseTimerB()
                 getTimeSetting()
                 applyTimeSetting()
+                true
+            }
+            R.id.time_hours -> {
+                currentTimeType = Time.HOURS
+                initTimeType(mMenu, currentTimeType)
+                true
+            }
+
+            R.id.time_minutes -> {
+                currentTimeType = Time.MINUTES
+                initTimeType(mMenu, currentTimeType)
+                true
+            }
+            R.id.time_seconds -> {
+                currentTimeType = Time.SECONDS
+                initTimeType(mMenu, currentTimeType)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -283,11 +333,41 @@ class StartGameActivity : AppCompatActivity() {
             aPlus1.isVisible = true
             bMinus1.isVisible = true
             bPlus1.isVisible = true
+            timeHours.isVisible = true
+            timeMinutes.isVisible = true
+            timeSeconds.isVisible = true
         } else {
             aMinus1.isVisible = false
             aPlus1.isVisible = false
             bMinus1.isVisible = false
             bPlus1.isVisible = false
+            timeHours.isVisible = false
+            timeMinutes.isVisible = false
+            timeSeconds.isVisible = false
+        }
+    }
+
+    private fun initTimeType(menu: Menu, timeStatus: Time) {
+        //timeHours = menu.findItem(R.id.time_minutes)
+        when (timeStatus) {
+            Time.SECONDS -> {
+                timeHours.title = "Seconds"
+                val s = SpannableString(timeHours.title)
+                s.setSpan(ForegroundColorSpan(Color.BLUE), 0, s.length, 0)
+                timeToLoseGain = 1000L
+            }
+            Time.MINUTES -> {
+                timeHours.title = "Minutes"
+                val s = SpannableString(timeHours.title)
+                s.setSpan(ForegroundColorSpan(Color.GREEN), 0, s.length, 0)
+                timeToLoseGain = 60_000
+            }
+            Time.HOURS -> {
+                timeHours.title = "Hours"
+                val s = SpannableString(timeHours.title)
+                s.setSpan(ForegroundColorSpan(Color.RED), 0, s.length, 0)
+                timeToLoseGain = 3_600_000
+            }
         }
     }
 }

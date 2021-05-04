@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
 import samyups.example.chessclock.databinding.SetTimeADialogBinding
 
 class SetTimeADialog(private val mainViewModel: MainViewModel): DialogFragment() {
@@ -67,11 +68,17 @@ class SetTimeADialog(private val mainViewModel: MainViewModel): DialogFragment()
             minutes = minutesList[binding?.selectMinutes?.value!! - 1].toLong()
             seconds = secondsList[binding?.selectSeconds?.value!! - 1].toLong()
             binding?.viewModel?.setTimeA(hours, minutes, seconds)
+            setDefaultEqualTimes(hours, minutes, seconds)
             Log.d(TAG, "minutes = $minutes \n seconds = $seconds")
             Log.d(TAG, "viewModel.displaytime = ${binding?.viewModel?.displayTimeA}")
             dismiss()
         }
+    }
 
+    private fun setDefaultEqualTimes(hours: Long, minutes: Long, seconds: Long) {
+        if (mainViewModel.displayTimeB.value == "0:00") {
+            mainViewModel.setTimeB(hours, minutes, seconds)
+        }
     }
 
     override fun onDestroy() {

@@ -1,6 +1,5 @@
 package samyups.example.chessclock.ui
 
-import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -67,9 +66,16 @@ class SetTimeBDialog(private val mainViewModel: MainViewModel): DialogFragment()
             minutes = minutesList[binding?.selectMinutes?.value!! - 1].toLong()
             seconds = secondsList[binding?.selectSeconds?.value!! - 1].toLong()
             binding?.viewModel?.setTimeB(hours, minutes, seconds)
+            setDefaultEqualTimes(hours, minutes, seconds)
             Log.d(TAG, "minutes = $minutes \n seconds = $seconds")
             Log.d(TAG, "viewModel.displaytime = ${binding?.viewModel?.displayTimeB}")
             dismiss()
+        }
+    }
+
+    private fun setDefaultEqualTimes(hours: Long, minutes: Long, seconds: Long) {
+        if (mainViewModel.displayTimeA.value == "0:00") {
+            mainViewModel.setTimeA(hours, minutes, seconds)
         }
     }
 

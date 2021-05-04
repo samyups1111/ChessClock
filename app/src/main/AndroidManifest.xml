@@ -5,7 +5,7 @@
     <application
             android:name=".utils.MainApplication"
             android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_launcher_clock2"
             android:label="ChessClock"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
