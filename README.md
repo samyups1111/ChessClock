@@ -14,7 +14,7 @@
 ![screenshot](https://github.com/samyups1111/ChessClock/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher_clock2.png) 
 # In-Game Time Adjustments:
 
-<img src="https://github.com/samyups1111/ChessClock/blob/AddPictures/app/src/main/res/mipmap-hdpi/game_pause.png.png" height="600" width="300"/>
+<img src="https://github.com/samyups1111/ChessClock/blob/AddPictures/app/src/main/res/mipmap-hdpi/game_pause.png" height="600" width="300"/>
 
 ### A) Subtract 1 \[TIME MODE] from Timer A
 ### B) Add 1 \[TIME MODE] from Timer A
@@ -24,4 +24,5 @@
 ### F) Set TIME MODE to "Second"
 ### G) Set TIME MODE to "Minute"
 ### H) Set TIME MODE to "Hour"
+
 ![screenshot](https://github.com/samyups1111/ChessClock/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher_clock2.png)
