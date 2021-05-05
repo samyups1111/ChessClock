@@ -1,4 +1,7 @@
 # ChessClock With Multiple Settings! 
+##### Get Now At The [Google Play Store](https://play.google.com/store/apps/details?id=samyups.example.chessclock)
+
+
 
 <img src="https://github.com/samyups1111/ChessClock/blob/AddPictures/app/src/main/res/mipmap-hdpi/main_pic.png" height="300" width="600"/>
 
