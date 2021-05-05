@@ -1,11 +1,27 @@
-# ChessClock
+# ChessClock With Multiple Settings! 
 
-A chess dual-Timer. One timer runs when the other stops. 
-When one timer runs out of time, that player loses. 
+<img src="https://github.com/samyups1111/ChessClock/blob/AddPictures/app/src/main/res/mipmap-hdpi/main_pic.png" height="300" width="600"/>
 
-Settings:
--Regular
--Time Delay
--Time Increment
+### A dual-timer chess clock. When one timer is clicked, the other timer starts to countdown. The first timer to reach 0:00 loses the game.
+![screenshot](https://github.com/samyups1111/ChessClock/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher_clock2.png)
+# Selecting a custom time:
 
-Users are able to customize time delay/increment amount. Users also have the aility to add/subtract time in-game for situations like illegal moves. 
+<img src="https://github.com/samyups1111/ChessClock/blob/AddPictures/app/src/main/res/mipmap-hdpi/save_time.png" height="600" width="300"/>
+
+### - Customizable times for each player.
+### - Time Delay: The number of seconds before a player's timer begins to count down. 
+### - Time Increment: The number of addtional seconds a player gets at the start of their turn. 
+![screenshot](https://github.com/samyups1111/ChessClock/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher_clock2.png) 
+# In-Game Time Adjustments:
+
+<img src="https://github.com/samyups1111/ChessClock/blob/AddPictures/app/src/main/res/mipmap-hdpi/game_pause.png.png" height="600" width="300"/>
+
+### A) Subtract 1 \[TIME MODE] from Timer A
+### B) Add 1 \[TIME MODE] from Timer A
+### C) Pause/Unpause game
+### D) Subtract 1 \[TIME MODE] from Timer B
+### E) Add 1 \[TIME MODE] from Timer B
+### F) Set TIME MODE to "Second"
+### G) Set TIME MODE to "Minute"
+### H) Set TIME MODE to "Hour"
+![screenshot](https://github.com/samyups1111/ChessClock/blob/master/app/src/main/res/mipmap-hdpi/ic_launcher_clock2.png)
