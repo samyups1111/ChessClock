@@ -20,10 +20,10 @@
 <img src="https://github.com/samyups1111/ChessClock/blob/AddPictures/app/src/main/res/mipmap-hdpi/game_pause.png" height="600" width="300"/>
 
 ### A) Subtract 1 \[TIME MODE] from Timer A
-### B) Add 1 \[TIME MODE] from Timer A
+### B) Add 1 \[TIME MODE] to Timer A
 ### C) Pause/Unpause game
 ### D) Subtract 1 \[TIME MODE] from Timer B
-### E) Add 1 \[TIME MODE] from Timer B
+### E) Add 1 \[TIME MODE] to Timer B
 ### F) Set TIME MODE to "Second"
 ### G) Set TIME MODE to "Minute"
 ### H) Set TIME MODE to "Hour"
